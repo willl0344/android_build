@@ -508,18 +508,11 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
     script.Unmount("/system")
 
   script.ShowProgress(0.5, 0)
-  script.Print("                    _____________________ ")
-  script.Print("                   /     www.slimroms.net|")
-  script.Print("                  /                      |")
-  script.Print("                 /    ___________________|")
-  script.Print("                /    /    ___             ")
-  script.Print("               /    / ___/   \            ")
-  script.Print("              /    / /   \___/____   ____ ")
-  script.Print("             /    /  |   |___/    \_/    |")
-  script.Print(" ___________/    /   |   |   |           |")
-  script.Print("|               /    |   |   |   |   |   |")
-  script.Print("|              /     |   |   |   |   |   |")
-  script.Print("|_____________/      \___^___^___^___^___/")
+
+  script.Print(" ");
+  script.Print("******************************************")
+  script.Print("************     W03 Slim    *************")
+  script.Print("******************************************")
   script.Print(" ")
 
   if OPTIONS.wipe_user_data:
@@ -528,15 +521,18 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
   if "selinux_fc" in OPTIONS.info_dict:
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
 
-  script.Print("")
   script.Print("Format and Mount System, Mount Data...")
+  script.Print(" ")
   script.FormatPartition("/system")
   script.Mount("/system")
   script.Mount("/data")
+  script.Print("Flashing Rom...")
+  script.Print(" ")
   script.UnpackPackageDir("system", "/system")
   script.UnpackPackageDir("data", "/data")
 
   script.Print("Symlinks and permissions...")
+  script.Print(" ")
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
 
@@ -559,7 +555,9 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
     script.RunBackup("restore")
 
   script.ShowProgress(0.2, 10)
-  script.Print("Flashing Boot Image...")
+
+  script.Print("Flashing Kernel...")
+  script.Print(" ")
   script.WriteRawImage("/boot", "boot.img")
 
   script.ShowProgress(0.1, 0)
@@ -567,6 +565,9 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
 
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
+
+  script.Print("Done, enjoy")
+  script.Print(" ")
 
   script.UnmountAll()
 
