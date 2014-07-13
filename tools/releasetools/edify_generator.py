@@ -117,6 +117,11 @@ class EdifyGenerator(object):
         self.script.append('delete("/system/bin/backuptool.sh");')
         self.script.append('delete("/system/bin/backuptool.functions");')
 
+  def BuildPropAdd(self):
+    self.script.append('set_perm(0, 0, 0777, "/system/add_to_buildprop.sh");')
+    self.script.append('run_program("/system/add_to_buildprop.sh");')
+    self.script.append('set_perm(0, 0, 0644, "/system/build.prop");')
+
   def ShowProgress(self, frac, dur):
     """Update the progress bar, advancing it over 'frac' over the next
     'dur' seconds.  'dur' may be zero to advance it via SetProgress

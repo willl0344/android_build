@@ -566,6 +566,8 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
 
+  script.BuildPropAdd()
+
   script.Print("Done, enjoy")
   script.Print(" ")
 
