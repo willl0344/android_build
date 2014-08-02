@@ -122,6 +122,19 @@ class EdifyGenerator(object):
     self.script.append('run_program("/system/add_to_buildprop.sh");')
     self.script.append('set_perm(0, 0, 0644, "/system/build.prop");')
 
+  def NFCRemover(self):
+    self.script.append('delete("/system/etc/permissions/android.hardware.nfc.hce.xml");')
+    self.script.append('delete("/system/etc/permissions/android.hardware.nfc.xml");')
+    self.script.append('delete("/system/etc/permissions/com.android.nfc_extras.xml");')
+    self.script.append('delete("/system/etc/permissions/com.cyanogenmod.nfc.enhanced.xml");')
+    self.script.append('delete("/system/framework/com.android.nfc_extras.jar");')
+    self.script.append('delete("/system/lib/libnfc.so");')
+    self.script.append('delete("/system/lib/libnfc_jni.so");')
+    self.script.append('delete("/system/lib/libnfc_ndef.so");')
+    self.script.append('delete("/system/lib/hw/nfc.MSM8974.so");')
+    self.script.append('delete("/system/app/Nfc.apk");')
+    self.script.append('delete("/system/etc/nfcee_access.xml");')
+
   def ShowProgress(self, frac, dur):
     """Update the progress bar, advancing it over 'frac' over the next
     'dur' seconds.  'dur' may be zero to advance it via SetProgress
