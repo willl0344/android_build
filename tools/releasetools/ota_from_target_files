@@ -568,8 +568,6 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
 
   script.BuildPropAdd()
 
-  script.NFCRemover()
-
   script.Print("Done, enjoy")
   script.Print(" ")
 
