@@ -122,6 +122,9 @@ class EdifyGenerator(object):
     self.script.append('run_program("/system/add_to_buildprop.sh");')
     self.script.append('set_perm(0, 0, 0644, "/system/build.prop");')
 
+  def ModulesPerm(self):
+    self.script.append('set_perm_recursive(0, 0, 0755, 0755, "/system/lib/modules/");')
+
   def ShowProgress(self, frac, dur):
     """Update the progress bar, advancing it over 'frac' over the next
     'dur' seconds.  'dur' may be zero to advance it via SetProgress
